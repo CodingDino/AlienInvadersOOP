@@ -14,6 +14,8 @@ public:
 	void DrawTo(sf::RenderTarget& target);
 	void Update(float frameTime);
 
+private:
+
 	// Private functions
 	void Fire();
 	void AngleChange(float deltaAngle);
