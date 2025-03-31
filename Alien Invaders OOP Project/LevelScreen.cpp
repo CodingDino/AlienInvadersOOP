@@ -6,18 +6,7 @@ LevelScreen::LevelScreen(sf::Vector2f screenSize)
 	, bulletTex("Assets/spaceMissiles_040.png")
 {
 	// Create the player and positions it based on screen size
-	myPlayer = new Player({ screenSize.x / 2.0f,screenSize.y - 100.0f });
-
-	/*
-	tempBullet = new Bullet(bulletTex,
-		50,
-		45,
-		{ screenSize.x / 2.0f,screenSize.y - 100.0f });
-	*/
-	// TEMP
-	SpawnBullet({ screenSize.x / 2.0f,screenSize.y - 100.0f },
-		50,
-		45);
+	myPlayer = new Player({ screenSize.x / 2.0f,screenSize.y - 100.0f }, this);
 }
 
 LevelScreen::~LevelScreen()

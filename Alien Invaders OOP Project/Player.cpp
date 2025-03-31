@@ -1,7 +1,11 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(sf::Vector2f pos)
+// When using forward declarations in the .h, must actually do the #include in the .cpp
+#include "LevelScreen.h"
+
+
+Player::Player(sf::Vector2f pos, LevelScreen* newLevel)
 	: baseTexture("Assets/turretBase_big.png")
 	, gunTexture("Assets/gun08.png")
 	, arrowTexture("Assets/tank_arrowFull.png")
@@ -10,6 +14,10 @@ Player::Player(sf::Vector2f pos)
 	, arrowSprite(arrowTexture)
 	, angle(0.0f)
 	, strength(1.0f)
+	, firingSpeed(50.0f)
+	, fireCooldown(0.2f)
+	, timeSinceFire(0.2f)
+	, level(newLevel)
 {
 	baseSprite.setOrigin(baseSprite.getGlobalBounds().size * 0.5f);
 	baseSprite.setPosition(pos);
@@ -32,9 +40,14 @@ void Player::Update(float frameTime)
 	const float ANGLE_SPEED = 90.0f;
 	const float STRENGTH_SPEED = 1.0f;
 
+	timeSinceFire += frameTime;
+
 	// Input handling
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && timeSinceFire >= fireCooldown)
 	{
+		// Reset the time since firing
+		timeSinceFire = 0.0f;
+
 		// Fire ze lazers!
 		Fire();
 	}
@@ -62,8 +75,7 @@ void Player::Update(float frameTime)
 
 void Player::Fire()
 {
-	// TEMP: Print out fire
-	std::cout << "FIRE!\n";
+	level->SpawnBullet(gunSprite.getPosition(), strength * firingSpeed, -angle);
 }
 
 void Player::AngleChange(float deltaAngle)

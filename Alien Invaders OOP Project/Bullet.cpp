@@ -13,7 +13,7 @@ Bullet::Bullet(sf::Texture& bulletTex,
 	// Sprite setup
 	sprite.setOrigin(sprite.getGlobalBounds().size * 0.5f);
 	sprite.setPosition(position);
-	sprite.setRotation(sf::degrees(firingAngle-90.0f));
+	sprite.setRotation(sf::degrees(-firingAngle+90.0f));
 
 	// Calculate velocity
 	// Angle is in degrees - must convert to radians

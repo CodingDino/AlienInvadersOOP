@@ -1,6 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+// Forward Declaration
+// Use this instead of an include
+// in the .h only
+// When using pointers to a class
+// (also used to avoid .h files including eachother)
+class LevelScreen;
+
 class Player
 {
 	// Functionality
@@ -8,7 +15,7 @@ class Player
 public:
 
 	// Constructors
-	Player(sf::Vector2f pos);
+	Player(sf::Vector2f pos, LevelScreen* newLevel);
 
 	// Public functions
 	void DrawTo(sf::RenderTarget& target);
@@ -35,6 +42,12 @@ private:
 
 	float angle;
 	float strength;
+	float firingSpeed;
+
+	float fireCooldown;
+	float timeSinceFire;
+
+	LevelScreen* level;
 
 };
 
