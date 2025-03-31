@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Bullet.h"
+#include "BasicEnemy.h"
 
 class LevelScreen
 {
@@ -25,6 +26,19 @@ private:
 	Player* myPlayer;
 	std::vector<Bullet*> bullets;
 	sf::Texture bulletTex;
+	sf::Texture basicEnemyTex;
+
+	//---
+	sf::Font uiFont;
+	sf::Text healthText;
+
+	int cityHealth;
+	sf::Vector2f screenSize;
+	//---
+
+
+	std::vector<BasicEnemy*> enemies;
+	//BasicEnemy* tempEnemy;
 
 };
 

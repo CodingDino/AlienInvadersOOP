@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "BasicEnemy.h"
 
 class Bullet
 {
@@ -16,8 +17,10 @@ public:
 	// Public Functions
 	void DrawTo(sf::RenderTarget& target);
 	void Update(float frameTime);
-	bool CheckCollision(/*Enemy enemy*/);
-	void DealDamage(/*Enemy enemy*/);
+	//---
+	bool CheckCollision(BasicEnemy* enemy);
+	void DealDamage(BasicEnemy* enemy);
+	//---
 
 	// Data
 private:

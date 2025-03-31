@@ -42,13 +42,14 @@ void Bullet::Update(float frameTime)
 	sprite.move(velocity * frameTime);
 }
 
-bool Bullet::CheckCollision()
+bool Bullet::CheckCollision(BasicEnemy* enemy)
 {
-	// TODO: Return to this when enemies are created
-	return false;
+	// nullopt means they do NOT overlap, meaning no collision
+	return enemy->GetHitbox().findIntersection(sprite.getGlobalBounds()) != std::nullopt;
 }
 
-void Bullet::DealDamage()
+void Bullet::DealDamage(BasicEnemy* enemy)
 {
-	// TODO: Return to this when enemies are created
+	enemy->ChangeHealth(-damage);
 }
+
