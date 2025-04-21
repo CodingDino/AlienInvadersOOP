@@ -1,4 +1,5 @@
 #include "LevelScreen.h"
+#include "HorizontalEnemy.h"
 #include <string> 
 
 LevelScreen::LevelScreen(sf::Vector2f newScreenSize)
@@ -105,6 +106,8 @@ void LevelScreen::Update(float frameTime)
 			enemies.erase(enemies.begin() + i);
 		}
 	}
+
+	// TODO: DIE!
 }
 
 Bullet* LevelScreen::SpawnBullet(sf::Vector2f pos, float speed, float angle)
