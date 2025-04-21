@@ -36,9 +36,6 @@ protected:
 	int health;
 	float speed;
 	int damage;
-
-private:
-
 	sf::Sprite sprite;
 };
 

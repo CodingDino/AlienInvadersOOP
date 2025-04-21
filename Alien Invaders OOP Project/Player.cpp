@@ -43,7 +43,8 @@ void Player::Update(float frameTime)
 	timeSinceFire += frameTime;
 
 	// Input handling
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && timeSinceFire >= fireCooldown)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) 
+		&& timeSinceFire >= fireCooldown)
 	{
 		// Reset the time since firing
 		timeSinceFire = 0.0f;

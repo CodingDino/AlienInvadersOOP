@@ -13,12 +13,13 @@ LevelScreen::LevelScreen(sf::Vector2f newScreenSize)
 	, cityHealth(100)
 	, screenSize(newScreenSize)
 	//--
+	, enemies()
+	, timeSinceSpawn(0.0f)
+	, spawnCooldown(1.0f)
 {
 	// Create the player and positions it based on screen size
 	myPlayer = new Player({ screenSize.x / 2.0f,screenSize.y - 100.0f }, this);
 
-	// TEMP: Create enemy
-	enemies.push_back(new BasicEnemy(basicEnemyTex, { screenSize.x / 2.0f, 100.0f }));
 
 	// UI Setup
 	healthText.setPosition({ 50, 50 });
@@ -55,6 +56,7 @@ void LevelScreen::DrawTo(sf::RenderTarget& target)
 
 void LevelScreen::Update(float frameTime)
 {
+
 	myPlayer->Update(frameTime);
 
 	for (int i = 0; i < bullets.size(); ++i)
@@ -63,6 +65,15 @@ void LevelScreen::Update(float frameTime)
 	}
 
 	// Enemy
+	timeSinceSpawn += frameTime;
+	if (timeSinceSpawn >= spawnCooldown)
+	{
+		// reset time since spawn
+		timeSinceSpawn = 0.0f;
+
+		// Spawn!
+		enemies.push_back(new HorizontalEnemy(basicEnemyTex, { screenSize.x / 2.0f, 100.0f }, screenSize.x));
+	}
 	for (int i = enemies.size()-1; i >= 0; --i)
 	{
 		enemies[i]->Update(frameTime);

@@ -38,6 +38,8 @@ private:
 
 
 	std::vector<BasicEnemy*> enemies;
+	float timeSinceSpawn;
+	float spawnCooldown;
 	//BasicEnemy* tempEnemy;
 
 };
