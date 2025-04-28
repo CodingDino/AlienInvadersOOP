@@ -7,6 +7,7 @@ LevelScreen::LevelScreen(sf::Vector2f newScreenSize)
 	, bullets()
 	, bulletTex("Assets/spaceMissiles_040.png")
 	, basicEnemyTex("Assets/shipBeige_manned.png")
+	, horizontalEnemyTex("Assets/shipPink_manned.png")
 	//--
 	, uiFont("Assets/Oxanium-VariableFont_wght.ttf")
 	, healthText(uiFont)
@@ -72,7 +73,15 @@ void LevelScreen::Update(float frameTime)
 		timeSinceSpawn = 0.0f;
 
 		// Spawn!
-		enemies.push_back(new HorizontalEnemy(basicEnemyTex, { screenSize.x / 2.0f, 100.0f }, screenSize.x));
+		int choice = rand() % 2;
+		if (choice == 0)
+		{
+			enemies.push_back(new BasicEnemy(basicEnemyTex, { screenSize.x / 2.0f, 100.0f }));
+		}
+		else
+		{
+			enemies.push_back(new HorizontalEnemy(horizontalEnemyTex, { screenSize.x / 2.0f, 100.0f }, screenSize.x));
+		}
 	}
 	for (int i = enemies.size()-1; i >= 0; --i)
 	{

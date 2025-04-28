@@ -27,6 +27,7 @@ private:
 	std::vector<Bullet*> bullets;
 	sf::Texture bulletTex;
 	sf::Texture basicEnemyTex;
+	sf::Texture horizontalEnemyTex;
 
 	//---
 	sf::Font uiFont;
